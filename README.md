@@ -1,84 +1,141 @@
-# 🔥 Learning Methods – Transformers in Python (Jupyter Lab)
+# 🔥 Metody Nauki – Transformery w Pythonie (Jupyter Lab)
+
+[![Język](https://img.shields.io/badge/język-polski-blue.svg)](https://github.com/USER/learning-methods-transformers)
+[![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
+[![JupyterLab](https://img.shields.io/badge/JupyterLab-4.x-orange.svg)](https://jupyter.org/)
+[![Transformers](https://img.shields.io/badge/🤗%20Transformers-4.40-yellow.svg)](https://huggingface.co/docs/transformers/index)
+[![PyTorch](https://img.shields.io/badge/PyTorch-2.1-red.svg)](https://pytorch.org/)
 
 > **Cel drugiej prezentacji (Python + Jupyter):**  
->  Pokazać, jak **duże modele językowe (LLM)** pomagają odpowiedzieć na pytanie  
->  _“Która metoda nauki działa najlepiej?”_ na bazie zbioru **Student Performance & Learning Style**.
+> Pokazać, jak **duże modele językowe (LLM)** pomagają odpowiedzieć na pytanie  
+> _“Która metoda nauki działa najlepiej?”_ na bazie zbioru **Student Performance & Learning Style**.
 
 ---
 
 ## 🗄️ Struktura projektu
 
+Przejrzysta organizacja plików i katalogów ułatwia nawigację i zrozumienie projektu.
+
+```
 learning-methods-transformers/
-├── data/ # CSV pobrany z Kaggle
-│ └── student-math-learning.csv
-├── notebooks/
-│ ├── 01_data_exploration.ipynb # wstępna eksploracja Pandas
-│ ├── 02_zero_shot.ipynb # zero-shot classification (BART)
-│ ├── 03_sentiment.ipynb # sentiment transformer (distilRoBERTa)
-│ ├── 04_text_generation.ipynb # generowanie promptów (GPT-2 / mistral-7B-instruct)
-│ └── 05_dashboard.ipynb # prosty interfejs Gradio
-├── src/
-│ ├── utils.py # wspólne funkcje (clean_text, load_data…)
-│ └── evaluate.py # metryki accuracy / f1 dla learning_style
-├── environments/
-│ └── environment.yml # specyfikacja Conda
-├── install.sh # 1-click setup (Linux/Mac)
-├── install.bat # 1-click setup (Windows)
-├── README.md # ← tu jesteś 🙂
-└── .gitignore
+├── 📂 data/                  # Plik CSV pobrany z Kaggle
+│   └── student-math-learning.csv
+├── 📂 notebooks/             # Główne pliki analizy
+│   ├── 01_data_exploration.ipynb  # Wstępna eksploracja (Pandas)
+│   ├── 02_zero_shot.ipynb         # Klasyfikacja zero-shot (BART)
+│   ├── 03_sentiment.ipynb         # Analiza sentymentu (distilRoBERTa)
+│   ├── 04_text_generation.ipynb   # Generowanie tekstu (GPT-2 / Mistral-7B)
+│   └── 05_dashboard.ipynb         # Interaktywny interfejs (Gradio)
+├── 📂 src/                   # Kod pomocniczy
+│   ├── utils.py               # Wspólne funkcje (np. clean_text, load_data)
+│   └── evaluate.py            # Metryki (accuracy, F1-score)
+├── 📂 environments/          # Konfiguracja środowiska
+│   └── environment.yml        # Specyfikacja dla Conda
+├── 📜 install.sh             # Skrypt instalacyjny dla Linux/Mac
+├── 📜 install.bat            # Skrypt instalacyjny dla Windows
+├── 📄 README.md              # Dokumentacja projektu (tu jesteś 🙂)
+└── 📄 .gitignore              # Pliki ignorowane przez Git
+```
+
+---
 
 ## 🚀 Szybki start (TL;DR)
 
-# 0) klon repo
+Gotowy do działania w 3 krokach!
+
+### 1. Klonowanie repozytorium
+
+```bash
 git clone https://github.com/USER/learning-methods-transformers.git
 cd learning-methods-transformers
+```
 
-# 1) środowisko Conda
+### 2. Instalacja środowiska (Conda)
+
+Zalecana metoda wykorzystuje menedżer środowisk `conda`.
+
+```bash
+# Utwórz środowisko na podstawie pliku .yml
 conda env create -f environments/environment.yml
+
+# Aktywuj środowisko
 conda activate learn-tx
+```
 
-# 2) pobranie CSV z Kaggle
-bash scripts/setup_kaggle.sh     # ustawia token + download + unzip
+### 3. Pobranie danych i uruchomienie JupyterLab
 
-# 3) uruchom JupyterLab
+Skrypt `setup_kaggle.sh` automatycznie pobierze i rozpakuje dane.
+
+```bash
+# Ustaw token Kaggle, pobierz i rozpakuj dane
+bash scripts/setup_kaggle.sh
+
+# Uruchom JupyterLab
 jupyter lab
-# ...i przejdź kolejno przez notebooki w katalogu notebooks/
+```
+Po uruchomieniu przejdź kolejno przez notebooki w katalogu `notebooks/`.
 
-Uwaga: jeśli instalacja Conda nie wchodzi w grę – patrz sekcja “🪄 Alternatywa: venv + pip”.
+> **Uwaga:** Jeśli instalacja `conda` nie wchodzi w grę, zobacz sekcję [**🪄 Alternatywa: `venv` + `pip`**](#-alternatywa-venv--pip).
 
-⚙️ Zależności techniczne
-Tool	Minimum	Notes
-Python	3.10	testowane 3.10/3.11
-JupyterLab	4.x	w environment.yml
-PyTorch (+ CUDA 11.8)	2.1	auto-detect GPU
-Transformers (HF)	4.40	pip install transformers[torch]
-Datasets	2.19	łatwe ładowanie CSV
-Gradio	4.31	demo UI
-scikit-learn, pandas	latest	klasyka ML
+---
 
-📒 Notebooki – opis slajdów
-Nr	Notebook	Slajd w prezentacji	Co pokazujemy
-01	Data Exploration	1–4	shape, nulls, GPA distrib, liczność metod nauki
-02	Zero-shot Classification	5–9	facebook/bart-large-mnli → predykcja learning_style
-03	Sentiment	10–12	cardiffnlp/twitter-roberta-base-sentiment → wykres słupkowy
-04	Text Generation	13–15	prompt-engineering + sampling (temp, top_p)
-05	Dashboard	16–17	Gradio – wpisz opis metody → zwrot: label + sentiment
-まとめ (Summary)	18	bullet-points + kolejne kroki
+## ⚙️ Zależności techniczne
 
-📊 Wyniki (TL;DR)
-Zero-shot trafność ≈ 78 % (macro F1) dla 4 głównych metod nauki.
-Studenci deklarujący “spaced repetition” mają +0.27 GPA (median) vs. reszta.
-Emocje NRC: dominują “anticipation” i “trust” w opisach najlepszych metod.
-Modele generują uzasadnienia, które pokrywają się z tematami LDA z prezentacji #1.
-Gotowy Gradio interfejs → łatwa demonstracja na konsultacjach.
+Projekt opiera się na popularnych bibliotekach do analizy danych i uczenia maszynowego.
 
-🪄 Alternatywa: venv + pip
+| Narzędzie         | Wersja (minimum) | Uwagi                               |
+| ----------------- | ---------------- | ----------------------------------- |
+| **Python**        | `3.10`           | Testowane na `3.10` / `3.11`        |
+| **JupyterLab**    | `4.x`            | Wersja zdefiniowana w `environment.yml` |
+| **PyTorch**       | `2.1`            | Automatyczne wykrywanie GPU (CUDA 11.8) |
+| **Transformers**  | `4.40`           | `pip install transformers[torch]`   |
+| **Datasets**      | `2.19`           | Łatwe ładowanie plików CSV          |
+| **Gradio**        | `4.31`           | Budowa interaktywnego demo          |
+| **scikit-learn**  | `latest`         | Klasyczne metryki ML                |
+| **pandas**        | `latest`         | Manipulacja danymi                  |
 
+---
+
+## 📒 Opis notebooków
+
+Każdy notebook odpowiada za konkretny etap analizy i jest powiązany z slajdami w prezentacji.
+
+| Nr | Notebook                 | Slajd w prezentacji | Co pokazujemy                                       |
+| -- | ------------------------ | ------------------- | --------------------------------------------------- |
+| 01 | `Data Exploration`       | 1–4                 | `shape`, `nulls`, rozkład GPA, liczność metod nauki |
+| 02 | `Zero-shot Classification` | 5–9                 | `facebook/bart-large-mnli` → predykcja `learning_style` |
+| 03 | `Sentiment Analysis`     | 10–12               | `cardiffnlp/twitter-roberta-base-sentiment` → wykres  |
+| 04 | `Text Generation`        | 13–15               | Prompt-engineering i sampling (`temp`, `top_p`)     |
+| 05 | `Dashboard`              | 16–17               | Gradio: wpisz opis metody → otrzymaj etykietę i sentyment |
+| –  | **Podsumowanie**         | 18                  | Główne wnioski i propozycje kolejnych kroków       |
+
+---
+
+## 📊 Główne wyniki (TL;DR)
+
+- **Klasyfikacja zero-shot:** Trafność ≈ **78%** (macro F1) dla 4 głównych metod nauki.
+- **Korelacja z GPA:** Studenci deklarujący _“spaced repetition”_ mają **+0.27 GPA** (mediana) w porównaniu do reszty.
+- **Analiza emocji (NRC):** W opisach najlepszych metod dominują _“anticipation”_ i _“trust”_.
+- **Generowanie tekstu:** Modele generują uzasadnienia, które pokrywają się z tematami LDA z pierwszej prezentacji.
+- **Interaktywne demo:** Gotowy interfejs w Gradio ułatwia demonstrację wyników na żywo.
+
+---
+
+## 🪄 Alternatywa: `venv` + `pip`
+
+Jeśli nie używasz `conda`, możesz skorzystać z wirtualnego środowiska `venv`.
+
+```bash
+# Utwórz środowisko
 python -m venv .venv
+
+# Aktywuj środowisko (Linux/Mac)
 source .venv/bin/activate
+# Dla Windows: .venv\Scripts\activate
+
+# Zainstaluj zależności
 pip install -r environments/requirements.txt
+```
 
-GPU? Zmień torch na torch==2.1.2+cu118 zgodnie z instrukcją:
-https://pytorch.org/get-started/locally/
-
-
+> **GPU?** Zmień `torch` na `torch==2.1.2+cu118` zgodnie z oficjalną instrukcją:  
+> [https://pytorch.org/get-started/locally/](https://pytorch.org/get-started/locally/)
