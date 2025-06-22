@@ -1,0 +1,18 @@
+name: learn-tx
+channels:
+  - conda-forge
+  - defaults
+  - pytorch
+dependencies:
+  - python=3.10
+  - pip
+  - jupyterlab>=4
+  - ipykernel
+  - pandas
+  - scikit-learn
+  - pip:
+      - torch==2.1.2
+      - transformers==4.40.0
+      - datasets==2.19.0
+      - gradio==4.31.0
+      - kaggle
