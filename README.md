@@ -106,8 +106,9 @@ Każdy notebook odpowiada za konkretny etap analizy i jest powiązany z slajdami
 | 02 | `Zero-shot Classification` | 5–9                 | `facebook/bart-large-mnli` → predykcja `learning_style` |
 | 03 | `Sentiment Analysis`     | 10–12               | `cardiffnlp/twitter-roberta-base-sentiment` → wykres  |
 | 04 | `Text Generation`        | 13–15               | Prompt-engineering i sampling (`temp`, `top_p`)     |
-| 05 | `Dashboard`              | 16–17               | Gradio: wpisz opis metody → otrzymaj etykietę i sentyment |
-| –  | **Podsumowanie**         | 18                  | Główne wnioski i propozycje kolejnych kroków       |
+| 05 | `Summarization`        | 16–17               | BART: streszczenie tekstu |
+| 06 | `Question Answering`   | 18–19               | DistilBERT: odpowiedzi na pytania |
+| –  | **Podsumowanie**         | 20                  | Główne wnioski i propozycje kolejnych kroków       |
 
 ---
 
