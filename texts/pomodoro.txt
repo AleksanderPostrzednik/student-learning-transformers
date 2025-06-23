@@ -1,0 +1,3 @@
+The Pomodoro Technique is a time management method developed in the late 1980s by Francesco Cirillo. It encourages people to work in focused blocks, traditionally 25 minutes long, separated by short breaks. The goal is to maintain concentration and prevent burnout by balancing effort with rest.
+
+During a typical Pomodoro session, a person sets a timer for 25 minutes and works on a single task without interruption. After the timer rings, they take a short 5-minute break to relax. After completing four cycles, a longer break of about 15–30 minutes is taken. This structured approach helps maintain productivity and reinforces a habit of sustained attention.
