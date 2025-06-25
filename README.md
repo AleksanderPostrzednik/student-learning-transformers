@@ -6,9 +6,10 @@
 [![Transformers](https://img.shields.io/badge/🤗%20Transformers-4.40-yellow.svg)](https://huggingface.co/docs/transformers/index)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.1-red.svg)](https://pytorch.org/)
 
-> **Cel drugiej prezentacji (Python + Jupyter):**  
-> Pokazać, jak **duże modele językowe (LLM)** pomagają odpowiedzieć na pytanie  
+> **Cel drugiej prezentacji (Python + Jupyter):**
+> Pokazać, jak **duże modele językowe (LLM)** pomagają odpowiedzieć na pytanie
 > _“Która metoda nauki działa najlepiej?”_ na bazie zbioru **Student Performance & Learning Style**.
+> Dodatkowo analizujemy **opinie o kursach** z publicznego zbioru z Hugging Face.
 
 ---
 
@@ -18,8 +19,9 @@ Przejrzysta organizacja plików i katalogów ułatwia nawigację i zrozumienie p
 
 ```
 learning-methods-transformers/
-├── 📂 data/                  # Plik CSV pobrany z Kaggle
-│   └── student-math-learning.csv
+├── 📂 data/                  # Zbiory danych
+│   ├── student-math-learning.csv    # Kaggle
+│   └── course_reviews.csv           # Opinie o kursach
 ├── 📂 notebooks/             # Główne pliki analizy
 │   ├── 01_data_exploration.ipynb  # Wstępna eksploracja (Pandas)
 │   ├── 02_zero_shot.ipynb         # Klasyfikacja zero-shot (BART)
@@ -64,13 +66,10 @@ conda activate learn-tx
 
 ### 3. Pobranie danych i uruchomienie JupyterLab
 
-Skrypt `setup_kaggle.sh` automatycznie pobierze i rozpakuje dane.
+Skrypt `download_reviews.py` pobierze opinie o kursach z serwisu Hugging Face.
 
 ```bash
-# Ustaw token Kaggle, pobierz i rozpakuj dane
-bash scripts/setup_kaggle.sh
-
-# Uruchom JupyterLab
+python scripts/download_reviews.py
 jupyter lab
 ```
 Po uruchomieniu przejdź kolejno przez notebooki w katalogu `notebooks/`.
