@@ -21,7 +21,9 @@ Przejrzysta organizacja plików i katalogów ułatwia nawigację i zrozumienie p
 learning-methods-transformers/
 ├── 📂 data/                  # Zbiory danych
 │   ├── student-math-learning.csv    # Kaggle
-│   └── course_reviews.csv           # Opinie o kursach
+│   ├── course_reviews.csv           # Opinie o kursach
+│   ├── peer_reviews.csv             # Recenzje studentów (HF)
+│   └── yelp_reviews.csv             # Duży zbiór opinii (HF)
 ├── 📂 notebooks/             # Główne pliki analizy
 │   ├── 01_data_exploration.ipynb  # Wstępna eksploracja (Pandas)
 │   ├── 02_zero_shot.ipynb         # Klasyfikacja zero-shot (BART)
@@ -67,9 +69,17 @@ conda activate learn-tx
 ### 3. Pobranie danych i uruchomienie JupyterLab
 
 Skrypt `download_reviews.py` pobierze opinie o kursach z serwisu Hugging Face.
+Jeśli potrzebujesz większych zbiorów tekstów z opiniami, skorzystaj z
+`download_peer_reviews.py` (recenzje studentów) lub `download_yelp.py`
+(kilkaset tysięcy recenzji z serwisu Yelp).
 
 ```bash
+# Opinie o kursach (mniejsze ~10k rekordów)
 python scripts/download_reviews.py
+# Recenzje studentów (~13k rekordów)
+python scripts/download_peer_reviews.py
+# Yelp – duży zbiór recenzji (650k+)
+# python scripts/download_yelp.py
 jupyter lab
 ```
 Po uruchomieniu przejdź kolejno przez notebooki w katalogu `notebooks/`.
