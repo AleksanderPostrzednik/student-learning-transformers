@@ -117,7 +117,8 @@ Każdy notebook odpowiada za konkretny etap analizy i jest powiązany z slajdami
 | 04 | `Text Generation`        | 13–15               | Prompt-engineering i sampling (`temp`, `top_p`)     |
 | 05 | `Summarization`        | 16–17               | BART: streszczenie tekstu |
 | 06 | `Question Answering`   | 18–19               | DistilBERT: odpowiedzi na pytania |
-| –  | **Podsumowanie**         | 20                  | Główne wnioski i propozycje kolejnych kroków       |
+| 07 | `Reviews Transformers` | 20–22               | Analiza recenzji z CSV: sentiment, streszczenia |
+| –  | **Podsumowanie**         | 23                  | Główne wnioski i propozycje kolejnych kroków       |
 
 ---
 
