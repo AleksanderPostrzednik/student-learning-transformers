@@ -7,3 +7,4 @@ datasets==2.19.0
 gradio==4.31.0
 kaggle
 nltk
+wordcloud
