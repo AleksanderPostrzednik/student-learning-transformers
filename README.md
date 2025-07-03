@@ -145,7 +145,7 @@ source .venv/bin/activate
 # Dla Windows: .venv\Scripts\activate
 
 # Zainstaluj zależności
-pip install -r environments/requirements.txt
+pip install -r environments/requirements.txt  # zawiera m.in. nltk i wordcloud
 ```
 
 > **GPU?** Zmień `torch` na `torch==2.1.2+cu118` zgodnie z oficjalną instrukcją:  
